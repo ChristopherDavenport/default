@@ -6,3 +6,14 @@ to be superior to the general use Monoid everywhere as though it was a default v
 Default exists to allow you to have something that expresses what you want, even if it might not be what you actually need.
 
 Default exists as a typeclass that allows `Default[A].default: A`, it exposes in the package object `def default[A: Default]: A` which you will likely find useful to remove the ceremony of summoning the typeclass to use.
+
+## Quick Start
+
+To use this project in an existing SBT project with Scala 2.11 or a later version, add the following dependencies to your
+`build.sbt` depending on your needs:
+
+```scala
+libraryDependencies ++= Seq(
+  "io.chrisdavenport" %% "default"     % "<version>"
+)
+```
