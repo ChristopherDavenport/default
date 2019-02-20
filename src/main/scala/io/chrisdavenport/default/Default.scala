@@ -1,6 +1,7 @@
 package io.chrisdavenport.default
 
 import cats._
+import cats.data._
 import cats.implicits._
 
 trait Default[A]{
@@ -34,6 +35,14 @@ object Default{
   implicit val unitDefault: Default[Unit] = empty
   implicit val stringDefault: Default[String] = empty
   implicit def listDefault[A]: Default[List[A]] = empty
+  implicit def vectorDefault[A]: Default[Vector[A]] = empty
+  implicit def chainDefault[A]: Default[Chain[A]] = empty
+
+  implicit def optionTDefault[F[_]: Applicative, A]: Default[OptionT[F, A]] = of(OptionT.none[F, A])
+
+  implicit def constDefault[A: Default, B]: Default[Const[A, B]] = of(Const(default[A]))
+  implicit def idTDefault[F[_]: Applicative, A: Default]: Default[IdT[F, A]] = of(IdT.pure[F, A](default[A]))
+
 
   // Tuple Defaults -- TODO: Macro for arity
   implicit def tuple2Default[A: Default, B: Default]: Default[(A, B)]= 
