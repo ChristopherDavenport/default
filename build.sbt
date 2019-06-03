@@ -4,7 +4,7 @@ lazy val core = project.in(file("."))
       name := "default"
     )
 
-val catsV = "1.6.0"
+val catsV = "1.6.1"
 val specs2V = "4.5.1"
 
 val kindProjectorV = "0.9.9"
